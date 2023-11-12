@@ -1,10 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { UserDocument } from './models/user.schema';
 import * as Bcrypt from 'bcrypt'
 import { LoginDto } from './dto/login.dto';
+import { use } from 'passport';
 
 @Injectable()
 export class UsersService {
@@ -42,8 +43,17 @@ export class UsersService {
 
     return user;
 
+  }
 
+  async getUser(email: string) {
 
+    const user = await this.userModel.findOne({
+      email: email
+    }).lean<UserDocument>(true);
+    console.log(user)
+
+    if (!user) throw new UnauthorizedException("user not found ")
+    return user;
   }
 
 

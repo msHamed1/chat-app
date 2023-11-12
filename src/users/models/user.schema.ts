@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { Document, SchemaTypes, Types } from 'mongoose';
 
 @Schema(
   {
@@ -10,7 +10,7 @@ export class UserDocument extends Document {
 
   @Prop({
     required: true,
-    type: Types.ObjectId
+    type: SchemaTypes.ObjectId
   })
   _id: Types.ObjectId;
 

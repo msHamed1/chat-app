@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Response, response } from 'express';
 import { Model } from 'mongoose';
 import { UserDocument } from 'src/users/models/user.schema';
+import { TokenPayload } from './interface/token-payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -15,8 +16,9 @@ export class AuthService {
 
 
   async logIn(user: UserDocument, res: Response) {
-    const payLoad = {
-      userId: user._id.toHexString()
+    const payLoad:TokenPayload = {
+      userId: user._id.toHexString(),
+      email:user.email
     }
     const expires = new Date()
     expires.setSeconds(
