@@ -25,7 +25,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   async getUserDetails(@CurrentUser() user : UserDocument,
   @Res({passthrough:true})  response :Response){
-    return "Success"
+    return user
 
   }
 }

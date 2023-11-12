@@ -4,6 +4,7 @@ import { DatabaseModule } from 'src/database/database.module';
 import { UserDocument, UserSchema } from './models/user.schema';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { UsersService } from './users.service';
 
   ],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService ,JwtAuthGuard],
   exports: [UsersService]
 
 })
