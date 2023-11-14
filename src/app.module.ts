@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { UsersService } from './users/users.service';
+import { ChatGateway } from './gateway/chat.gateway';
+import { ChatModule } from './gateway/chat.module';
 
 @Module({
   imports: [
@@ -14,8 +16,8 @@ import { UsersService } from './users/users.service';
     }), 
     DatabaseModule,
     UsersModule,
-    AuthModule],
+    AuthModule,ChatModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService ],
 })
 export class AppModule { }

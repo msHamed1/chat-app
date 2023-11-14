@@ -10,20 +10,21 @@ import { UsersService } from 'src/users/users.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
-  imports:[
+  imports: [
     ConfigModule.forRoot({
-      isGlobal:true,
-}),UsersModule,
+      isGlobal: true,
+    }), UsersModule,
     JwtModule.registerAsync({
-    useFactory:(configService:ConfigService)=>({
-      secret: configService.get("SECRET_KEY"),
-      signOptions:{
-        expiresIn:"3600s"
-      }
-    }),
-    inject:[ConfigService]
-  })],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get("SECRET_KEY"),
+        signOptions: {
+          expiresIn: "3600s"
+        }
+      }),
+      inject: [ConfigService]
+    })],
   controllers: [AuthController],
-  providers: [AuthService,LocalStartegy,JwtService,JwtStrategy]
+  providers: [AuthService, LocalStartegy, JwtService, JwtStrategy],
+  exports: [LocalStartegy, JwtService, JwtStrategy]
 })
-export class AuthModule {}
+export class AuthModule { }

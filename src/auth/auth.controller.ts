@@ -10,21 +10,21 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 @Controller('auth')
 export class AuthController {
 
-  constructor(private readonly authService:AuthService){}
+  constructor(private readonly authService: AuthService) { }
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  async login( @CurrentUser() user : UserDocument,
-  @Res({passthrough:true})  response :Response
-  ){
-     await this.authService.logIn(user,response)
-     response.send(user)
+  async login(@CurrentUser() user: UserDocument,
+    @Res({ passthrough: true }) response: Response
+  ) {
+    await this.authService.logIn(user, response)
+    response.send(user)
   }
 
   @Get('login')
   @UseGuards(JwtAuthGuard)
-  async getUserDetails(@CurrentUser() user : UserDocument,
-  @Res({passthrough:true})  response :Response){
+  async getUserDetails(@CurrentUser() user: UserDocument,
+    @Res({ passthrough: true }) response: Response) {
     return user
 
   }
