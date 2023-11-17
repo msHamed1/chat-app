@@ -5,18 +5,18 @@ import { Observable } from "rxjs";
 import { UsersService } from "src/users/users.service";
 
 @Injectable()
-export class JwtAuthGuard implements CanActivate{
+export class JwtAuthGuard implements CanActivate {
   constructor(
-    private readonly jwtService:JwtService,
+    private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     private readonly userService: UsersService,
 
-  ){}
+  ) { }
   async canActivate(context: ExecutionContext) {
-    const jwt= context.switchToHttp().getRequest().cookies?.AUTH ;
-    if(!jwt) return false 
+    const jwt = context.switchToHttp().getRequest().cookies?.AUTH;
+    if (!jwt) return false
 
-    const decoded =this.jwtService.decode(jwt)
+    const decoded = this.jwtService.decode(jwt)
     if (!decoded) {
       return false;
     }
@@ -31,7 +31,7 @@ export class JwtAuthGuard implements CanActivate{
 
 
 
-    return true 
+    return true
   }
-  
+
 }

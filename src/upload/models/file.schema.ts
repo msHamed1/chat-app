@@ -10,7 +10,7 @@ export class FileDocument extends Document {
   @Prop(
     {
       required: true,
-      type: SchemaTypes.ObjectId
+      type: Types.ObjectId
     }
   )
   _id: Types.ObjectId 
