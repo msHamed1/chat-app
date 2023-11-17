@@ -16,7 +16,8 @@ export class UserDocument extends Document {
 
   @Prop(
     {
-      required: true
+      required: true,
+      unique: true
     }
   )
   email: string

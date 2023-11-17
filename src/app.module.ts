@@ -8,6 +8,7 @@ import { DatabaseModule } from './database/database.module';
 import { UsersService } from './users/users.service';
 import { ChatGateway } from './gateway/chat.gateway';
 import { ChatModule } from './gateway/chat.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { ChatModule } from './gateway/chat.module';
     }), 
     DatabaseModule,
     UsersModule,
-    AuthModule,ChatModule],
+    AuthModule,UploadModule],
   controllers: [AppController],
   providers: [AppService ],
 })

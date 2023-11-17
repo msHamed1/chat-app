@@ -22,7 +22,7 @@ export class LocalStartegy extends PassportStrategy(Strategy) {
         password
       })
     } catch (error) {
-      throw new UnauthorizedException("error")
+      throw new UnauthorizedException(error.message)
     }
 
 

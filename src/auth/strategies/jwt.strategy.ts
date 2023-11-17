@@ -26,7 +26,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate({ userId,email }: TokenPayload) {
     try {
-      console.log(userId)
+    
       return await this.userService.getUser(email)
     } catch (error) {
       throw new UnauthorizedException(error.message)
